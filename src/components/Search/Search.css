@@ -1,0 +1,87 @@
+.view_wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.view_wrapper .filter {
+  display: inline-block;
+
+  width: 12%;
+  height: 100%;
+  margin-right: 30px;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  flex: 1 0;
+
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.view_wrapper .filter .price_filter {
+  display: inline-block;
+  text-align: left;
+  width: 150px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.view_wrapper .filter .price_filter label {
+  width: 100%;
+  font-weight: lighter;
+  font-size: 20px;
+  display: inline-block;
+}
+
+
+.view_wrapper .viewer {
+  display: inline-block;
+  width: 50%;
+  height: 100%;  
+}
+
+.view_wrapper .viewer .wrapper_view_blocks {
+  width: 100%;
+  height: 100%;
+  padding: 1%;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  flex: 1 0;
+
+  background-color: #f1f1f1;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block {
+    background-color: rgb(154, 142, 166);
+    display: inline-block;
+
+    font-size: 20px;
+    width: 48%;
+    height: 300px;
+
+    margin: 1%;
+    overflow: hidden;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block img {
+  width: 100px;
+  height: 100px;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block .link {
+  color: black;
+  font-size: 18px;
+  
+  outline: none;
+  text-decoration: none;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block .link:hover {
+  color: rgb(123, 255, 123);
+  font-size: 18px;
+  
+  outline: none;
+  text-decoration: none;
+}

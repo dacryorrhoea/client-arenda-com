@@ -1,38 +1,83 @@
+/* @import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'; */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.main {
+  height: 94vh;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  display: flex;
+  background-color: rgb(16, 16, 16);
+}
+
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 6vh;
+  background-color: rgb(222, 225, 162);
+} 
+
+.header .logo {
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 200px;
+}
+
+.header .logo .link {
+  font-size: 26px;
+  font-weight: bold;
+  outline: none;
+  text-decoration: none;
+  color: black;
+}
+
+.header .menu {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  right: 0%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .menu .item {
+  border: none;
+  flex-grow: 1;
+
+  background-color: rgb(33, 33, 33);
+
+  margin: 0 20px 0 0;
+  height: 70%;
+  border-radius: 20px;
+  width: 200px;
+
+  text-align: center;
+  align-content: center;
+}
+
+.header .menu .item .link{
   color: white;
+  font-size: 18px;
+  
+  outline: none;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+.header .menu .item .link:hover {
+  color: rgb(222, 225, 162);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.footer {
+  height: 300px;
+  background-color: rgb(222, 225, 162);
 }
