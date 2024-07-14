@@ -1,12 +1,14 @@
-/* @import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'; */
+@import  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+
 .App {
-  text-align: center;
+  color: black;
 }
 
 .main {
   height: 94vh;
   justify-content: center;
   display: flex;
+  align-items: center;
   background-color: rgb(16, 16, 16);
 }
 

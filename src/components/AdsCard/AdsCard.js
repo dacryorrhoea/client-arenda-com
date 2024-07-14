@@ -2,7 +2,7 @@ import './AdsCard.css';
 
 function AdsCard() {
   return (
-    <div className="ads_card_wrapper">
+    <div className='ads_card_wrapper'>
     </div>
   );
 }

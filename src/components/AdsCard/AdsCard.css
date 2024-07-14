@@ -1,0 +1,10 @@
+.ads_card_wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+
+.ads_card_wrapper img {
+  height: 500px;
+  width: 500px;
+}

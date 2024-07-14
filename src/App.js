@@ -15,8 +15,6 @@ function App() {
           <div className='logo'><Link className='link' to="/">Аренда.com</Link></div>
           <nav className='menu'>
             <div className='item'><Link className='link' to="/search">Для арендателя</Link></div>
-            <div className='item'><Link className='link' to="/search">Для арендатора</Link></div>
-            <div className='item'><Link className='link' to="/search">Избранное</Link></div>
             <div className='item'><Link className='link' to="/profile">Профиль</Link></div>
           </nav>
         </header>

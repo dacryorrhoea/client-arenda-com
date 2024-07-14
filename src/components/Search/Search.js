@@ -1,5 +1,7 @@
 import './Search.css';
 
+import List from './List/List';
+
 function Search() {
   return (
     <div className='view_wrapper'>
@@ -15,8 +17,7 @@ function Search() {
       </div>
       <div className='viewer'>
         <div className='wrapper_view_blocks'>
-          {/* <FlatsList/>
-          <Pagination/> */}
+          <List/>
         </div>
       </div>
     </div>

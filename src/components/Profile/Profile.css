@@ -1,0 +1,85 @@
+.profile_wrapper {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.profile_wrapper .ads_block {
+  background-color: rgb(174, 147, 199);
+  width: 94%;
+  height: 300px;
+  margin-left: 3%;
+  margin-top: 3%;
+}
+
+
+.profile_info_block {
+  background-color: rgb(222, 225, 162);
+  width: 20%;
+  height: 100%;
+}
+
+.profile_info_block .profile_photo {
+  width: 250px;
+  height: 280px;
+}
+
+.favourites_ads_wrapper {
+  background-color: rgb(222, 225, 162);
+  width: 38%;
+  height: 100%;
+  margin-left: 2%;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  flex: 1 0;
+
+  text-align: center;
+}
+
+.owner_ads_wrapper {
+  background-color: rgb(222, 225, 162);
+  width: 38%;
+  height: 100%;
+  margin-left: 2%;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  flex: 1 0;
+
+  text-align: center;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block {
+  background-color: rgb(154, 142, 166);
+  display: inline-block;
+
+  font-size: 20px;
+  width: 48%;
+  height: 300px;
+
+  margin: 1%;
+  overflow: hidden;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block img {
+width: 100px;
+height: 100px;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block .link {
+color: black;
+font-size: 18px;
+
+outline: none;
+text-decoration: none;
+}
+
+.view_wrapper .viewer .wrapper_view_blocks .view_block .link:hover {
+color: rgb(123, 255, 123);
+font-size: 18px;
+
+outline: none;
+text-decoration: none;
+}
