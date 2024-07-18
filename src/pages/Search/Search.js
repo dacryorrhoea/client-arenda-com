@@ -2,12 +2,11 @@ import './Search.css';
 
 import List from './List/List';
 
-function Search() {
+function Search({filterAds, updateFilterAds}) {
   return (
     <div className='view_wrapper'>
       <div className='filter'>
         <div className='price_filter'>
-          Цена
           <label><input type="checkbox" /> 100$</label>
           <label><input type="checkbox" /> 200$</label>
           <label><input type="checkbox" /> 300$</label>

@@ -1,0 +1,26 @@
+.register_form_wrapper {
+  color: white;
+  width: 30%;
+  height: 30%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.register_form_wrapper .register_block {
+  justify-content: center;
+  width: 50%;
+  height: 70%;
+}
+
+.register_form_wrapper input {
+  font-size: 22px;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.register_form_wrapper button {
+  font-size: 18px;
+  width: 60%;
+  margin-top: 3%;
+}
