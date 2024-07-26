@@ -24,3 +24,9 @@
   width: 60%;
   margin-top: 3%;
 }
+
+.register_form_wrapper .user_owner_input {
+  display: inline;
+  margin-left: 5px;
+  width: 20px;
+}

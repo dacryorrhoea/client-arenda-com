@@ -29,5 +29,11 @@
   height: 70px;
   width: 70px;
   /* background-color: #851212; */
-  color: black;
+  background-color: rgb(164, 29, 29);
+  color: white;
+}
+
+.search_bar .button:hover {
+  background-color: #c33126;
+  /* color: black; */
 }

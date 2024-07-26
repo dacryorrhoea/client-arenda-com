@@ -79,9 +79,11 @@ const Login = ({ userInfo, updateUserInfo }) => {
       <div className="login_form_wrapper">
         <form className="login_block">
           <label htmlFor="login">Логин</label>
-          <input type="text" onChange={changeLogin} value={isLogin} />
+          <input type="text" onChange={(e)=>setIsLogin(e.target.value)} value={isLogin} />
+
           <label htmlFor="password">Пароль</label>
-          <input type="password" onChange={changePassword} value={isPassword} />
+          <input type="password" onChange={(e)=>setIsPassword(e.target.value)} value={isPassword} />
+
           {isError ? <div >{isError}</div> : null}
           <input type="submit" value='Войти' onClick={submitForm} className='btn' />
         </form>

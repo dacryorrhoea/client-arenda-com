@@ -19,7 +19,8 @@ const ANONYMOUS = {
 
 const DEFAULT_FILTER = {
   address: '',
-  price: []
+  min_price: 100,
+  max_price: 10000
 }
 
 function App() {

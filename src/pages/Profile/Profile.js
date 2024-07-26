@@ -15,7 +15,7 @@ function Profile({ userInfo, updateUserInfo }) {
   return (
     <div className="profile_wrapper">
       <div className='profile_info_block'>
-        <img src="https://us.rule34.xxx//images/2666/4a35a697653cde25a3ff9b72d4157c74.jpeg?10667927" alt="" className='profile_photo'/>
+        <img src="" alt="" className='profile_photo'/>
         <div className='user_info'>
           <p>Имя: {userInfo.username}</p>
           <p>Фамилия: Фамилия</p>

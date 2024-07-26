@@ -9,6 +9,7 @@ function Register() {
   const [isLogin, setIsLogin] = useState('')
   const [isEmail, setIsEmail] = useState('')
   const [isPassword, setIsPassword] = useState('')
+  const [isUserLessor, setIsUserLessor] = useState(false)
 
   const [isCsrf, setIsCsrf] = useState(null)
   const [isError, setIsError] = useState(null)
@@ -47,18 +48,6 @@ function Register() {
       });
   }
 
-  function changePassword(e) {
-    setIsPassword(e.target.value)
-  }
-
-  function changeEmail(e) {
-    setIsEmail(e.target.value)
-  }
-
-  function changeLogin(e) {
-    setIsLogin(e.target.value)
-  }
-
   function submitForm(e) {
     e.preventDefault()
     signup()
@@ -69,13 +58,23 @@ function Register() {
     <div className="register_form_wrapper">
       <form className="register_block">
         <label htmlFor="login">Логин</label>
-        <input type="text" onChange={changeLogin} value={isLogin} />
+        <input type="text" onChange={(e)=>setIsLogin(e.target.value)} value={isLogin} />
 
         <label htmlFor="email">Почта</label>
-        <input type="text" onChange={changeEmail} value={isEmail} />
+        <input type="text" onChange={(e)=>setIsEmail(e.target.value)} value={isEmail} />
 
         <label htmlFor="password">Пароль</label>
-        <input type="password" onChange={changePassword} value={isPassword} />
+        <input type="password" onChange={(e)=>setIsPassword(e.target.value)} value={isPassword} />
+
+        <label htmlFor="user_lessor">
+        Хочу быть арендодателем
+          <input 
+            type="checkbox"
+            onChange={(e)=>setIsUserLessor(!isUserLessor)}
+            value={isUserLessor}
+            className='user_lessor_input'
+          />
+        </label>
 
         {isError ? <div >{isError}</div> : null}
 

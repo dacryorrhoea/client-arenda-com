@@ -27,6 +27,14 @@
   font-weight: bold;
 }
 
+.view_wrapper .filter .price_filter input {
+  width: 120px;
+}
+
+.view_wrapper .filter .price_filter button {
+  font-size: 16px;
+}
+
 .view_wrapper .filter .price_filter label {
   width: 100%;
   font-weight: lighter;

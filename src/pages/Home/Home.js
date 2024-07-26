@@ -9,7 +9,8 @@ function Home({updateFilterAds}) {
   const onClickSearchButton = () => {
     updateFilterAds({
       address: address,
-      price: []
+      min_price: 100,
+      max_price: 10000
     });
     navigate('/search', {replace: true});
   }
