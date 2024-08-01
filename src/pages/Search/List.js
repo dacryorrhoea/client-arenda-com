@@ -1,53 +1,50 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { get } from "mobx";
-
-const serverUrl = 'http://localhost:8000/api/ads/'
-
-function List({ filterAds }) {
-  const [adsList, setAdsList] = useState([]);
-
-  useEffect(() => {
-    getAdsList(filterAds);
-  }, [])
-
-  const getAdsList = (filter) => {
-    const fullUrl = `?price_min=${filter.min_price}&price_max=${filter.max_price}`;
-    console.log(fullUrl)
-    axios.get(serverUrl + fullUrl)
-    .then((res) => {
-      const data = res.data.map((result) => ({
-        address: result.address,
-        price: result.price, 
-        img: result.img_src,
-        description: result.short_desc
-      }));
-
-      const elements = []
-
-      data.forEach(ad => {
-        if (ad.category !== null) {
-          elements.push(
-            <div className='view_block'>
-              <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-              <p>{ad.price}$</p>
-              <div className="item_link">
-                {/* <Link className="link" to={`/search/ads/${ad.id}`}>Посмотреть</Link> */}
-              </div>
-            </div>
-          );
-        }
-      });
-
-      setAdsList(elements);
-    })
-  }
-
+function List({ adsListData }) {
   return (
     <>
-      <button onClick={() => {getAdsList(filterAds)}}>обновить</button>
-      {adsList}
+      {(() => {
+        console.log('vivoju spisok')
+        const data = adsListData.map((result) => ({
+          id: result.id,
+          address: result.address,
+          price: result.price,
+          description: result.description
+        }));
+
+        const elements = []
+
+        data.forEach(ad => {
+          if (ad.category !== null) {
+            elements.push(
+              <div className='view_block' key={ad.id}>
+                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
+                <div className="ad_info_block">
+                  <h2>{ad.description}</h2>
+                  <p>
+                    <span>{ad.address} ул.Молодая д.69</span>
+                  </p>
+                  <p>
+                    <span>рейтинг: 9.5</span>
+                    <span>отзывов 300</span>
+                  </p>
+                  <p>
+                    <span>Цена за сутки: {ad.price} руб.</span>
+                  </p>
+                  <p>
+                    <span>На ваш срок: {ad.price * 3} руб.</span>
+                  </p>
+                </div> 
+                <div className="item_link">
+                  <Link className="link" to={`/search/ads/${ad.id}`}>Подробнее</Link>
+                  <button type="submit" className="link">Добавить в избранное</button>
+                </div>
+              </div>
+            );
+          }
+        });
+
+        return elements;
+      })()}
     </>
   )
 }

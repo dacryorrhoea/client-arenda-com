@@ -9,20 +9,21 @@
   justify-content: center;
   display: flex;
   align-items: center;
-  background-color: rgb(16, 16, 16);
+  background-color: rgb(220, 220, 220);
 }
-
 
 .header {
   position: relative;
   width: 100%;
   height: 6vh;
-  background-color: rgb(222, 225, 162);
+  color: white;
+  background-color: rgb(44, 44, 44);
 } 
 
 .header .logo {
   position: absolute;
   left: 0;
+  color: white;
 
   display: flex;
   justify-content: center;
@@ -37,7 +38,7 @@
   font-weight: bold;
   outline: none;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .header .menu {
@@ -55,19 +56,19 @@
   border: none;
   flex-grow: 1;
 
-  background-color: rgb(33, 33, 33);
+  background-color: rgb(255, 255, 255);
 
   margin: 0 20px 0 0;
   height: 70%;
   border-radius: 20px;
-  width: 200px;
+  width: 230px;
 
   text-align: center;
   align-content: center;
 }
 
 .header .menu .item .link{
-  color: white;
+  color: black;
   font-size: 18px;
   
   outline: none;
@@ -75,11 +76,11 @@
 }
 
 .header .menu .item .link:hover {
-  color: rgb(222, 225, 162);
+  color: rgb(234, 76, 129);
 }
 
 
 .footer {
   height: 300px;
-  background-color: rgb(222, 225, 162);
+  background-color: rgb(44, 44, 44);
 }

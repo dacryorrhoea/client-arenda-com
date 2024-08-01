@@ -1,7 +1,6 @@
 .register_form_wrapper {
-  color: white;
   width: 30%;
-  height: 30%;
+  height: 50%;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -19,14 +18,25 @@
   margin-bottom: 5%;
 }
 
-.register_form_wrapper button {
+.register_form_wrapper .btn {
   font-size: 18px;
-  width: 60%;
+  width: 80%;
   margin-top: 3%;
+  background-color: brown;
+  color: white;
 }
 
-.register_form_wrapper .user_owner_input {
-  display: inline;
+.register_form_wrapper .btn:hover {
+  background-color: rgb(112, 3, 3);
+}
+
+.register_form_wrapper .label_lessor_input {
+  display: inline-block;
+  width: 68%;
+}
+
+.register_form_wrapper .user_lessor_input {
+  display: inline-block;
   margin-left: 5px;
   width: 20px;
 }

@@ -15,18 +15,37 @@
 
 
 .profile_info_block {
-  background-color: rgb(222, 225, 162);
+  background-color: rgb(255, 255, 255);
   width: 20%;
   height: 100%;
 }
 
 .profile_info_block .profile_photo {
-  width: 250px;
-  height: 280px;
+  margin-left: 7%;
+  margin-top: 7%;
+  width: 86%;
+  height: auto;
+}
+
+.profile_info_block .user_info {
+  font-size: 19px;
+  margin-left: 7%;
+  margin-top: 7%;
+  width: 86%;
+  height: auto;
+}
+
+.profile_info_block button {
+  font-size: 18px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 7%;
+  width: 40%;
+  height: 30px;
 }
 
 .favourites_ads_wrapper {
-  background-color: rgb(222, 225, 162);
+  background-color: rgb(255, 255, 255);
   width: 38%;
   height: 100%;
   margin-left: 2%;
@@ -39,7 +58,7 @@
 }
 
 .owner_ads_wrapper {
-  background-color: rgb(222, 225, 162);
+  background-color: rgb(255, 255, 255);
   width: 38%;
   height: 100%;
   margin-left: 2%;
@@ -51,35 +70,7 @@
   text-align: center;
 }
 
-.view_wrapper .viewer .wrapper_view_blocks .view_block {
-  background-color: rgb(154, 142, 166);
-  display: inline-block;
-
-  font-size: 20px;
-  width: 48%;
-  height: 300px;
-
-  margin: 1%;
-  overflow: hidden;
-}
-
-.view_wrapper .viewer .wrapper_view_blocks .view_block img {
-width: 100px;
-height: 100px;
-}
-
-.view_wrapper .viewer .wrapper_view_blocks .view_block .link {
-color: black;
-font-size: 18px;
-
-outline: none;
-text-decoration: none;
-}
-
-.view_wrapper .viewer .wrapper_view_blocks .view_block .link:hover {
-color: rgb(123, 255, 123);
-font-size: 18px;
-
-outline: none;
-text-decoration: none;
+.owner_ads_wrapper img{
+  width: 100px;
+  height: 100px;
 }

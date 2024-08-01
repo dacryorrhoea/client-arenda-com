@@ -1,0 +1,26 @@
+.placing_wrapper {
+  color: #fff;
+  width: 30%;
+  height: 30%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.placing_wrapper .placing_block {
+  justify-content: center;
+  width: 50%;
+  height: 70%;
+}
+
+.placing_wrapper input {
+  font-size: 22px;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.placing_wrapper .btn {
+  font-size: 18px;
+  width: 50%;
+  margin-top: 3%;
+}

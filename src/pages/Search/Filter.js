@@ -2,8 +2,8 @@ import { useState } from "react";
 
 function Filter({ filterAds, updateFilterAds }) {
   const [address, setAddress] = useState(filterAds.address)
-  const [minPrice, setMinPrice] = useState('100');
-  const [maxPrice, setMaxPrice] = useState('9000');
+  const [minPrice, setMinPrice] = useState(filterAds.min_price);
+  const [maxPrice, setMaxPrice] = useState(filterAds.max_price);
 
   const onClickAcceptFilters = () => {
     updateFilterAds({
@@ -37,6 +37,84 @@ function Filter({ filterAds, updateFilterAds }) {
           type="number"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
+        />
+      </label>
+      <label>
+        None
+        <input
+          type="text"
         />
       </label>
       <button onClick={onClickAcceptFilters}>Принять фильтры</button>

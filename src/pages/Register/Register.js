@@ -20,7 +20,6 @@ function Register() {
         if (!(res.status >= 200 && res.status <= 299)) {
           throw Error(res.statusText);
         }
-        setIsCsrf(res.headers.get('X-CSRFToken'))
       })
       .catch((err) => console.error(err))
   }, [])
@@ -66,15 +65,13 @@ function Register() {
         <label htmlFor="password">Пароль</label>
         <input type="password" onChange={(e)=>setIsPassword(e.target.value)} value={isPassword} />
 
-        <label htmlFor="user_lessor">
-        Хочу быть арендодателем
-          <input 
-            type="checkbox"
-            onChange={(e)=>setIsUserLessor(!isUserLessor)}
-            value={isUserLessor}
-            className='user_lessor_input'
-          />
-        </label>
+        <label htmlFor="user_lessor" className='label_lessor_input'>Хочу быть арендодателем</label>
+        <input 
+          type="checkbox"
+          onChange={(e)=>setIsUserLessor(!isUserLessor)}
+          value={isUserLessor}
+          className='user_lessor_input'
+        />
 
         {isError ? <div >{isError}</div> : null}
 

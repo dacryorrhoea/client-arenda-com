@@ -1,0 +1,141 @@
+.ad_card_wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  margin-left: 25%;
+
+  overflow: scroll;
+  overflow-x: hidden;
+  flex: 1 0;
+  scrollbar-width: none;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block {
+  display: inline-block;
+  width: 100%;
+  padding: 3%;
+  margin-top: 20px;
+  border-radius: 20px;
+
+  background-color: #fff;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .yandex_maps{
+  width: 100%;
+  height: 500px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .review_block {
+  display: inline-block;
+  width: 80%;
+  margin-left: 10%;
+  height: auto;
+  margin-top: 40px;
+  
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .review_block img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block p span {
+  margin-right: 15px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block h4 span {
+  margin-left: 25px;
+  font-size: 19px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .lessor_img {
+  display: inline-block;
+  top: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 70px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .lessor_info_block {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .description_block {
+  padding: 70px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel img {
+  width: auto;
+  height: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .slick-dots li.slick-active button:before {
+  color: rgb(255, 0, 0);
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .slick-prev:before,
+.ad_card_wrapper .ad_card_info_wrapper .info_block .slick-next:before {
+  color: rgb(255, 0, 0);
+}
+
+
+
+.ad_card_wrapper .booking_form_wrapper {
+  display: inline-block;
+  position: absolute;
+  height: 45%;
+  width: 18%;
+  margin: 25px 0 0 3.5%;
+  padding: 30px;
+  background-color: #fff;
+  /* text-align: center; */
+  border-radius: 10px;
+}
+
+.ad_card_wrapper .booking_form_wrapper .booking_form {
+  height: 100%;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.ad_card_wrapper .booking_form_wrapper .booking_form * {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+.ad_card_wrapper .booking_form_wrapper .booking_form label {
+  text-align: left;
+  /* margin-left: 10px; */
+  /* margin-top: 15px; */
+  margin-bottom: 5px;
+}
+
+.ad_card_wrapper .booking_form_wrapper .booking_form input {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 22;
+}
+
+.ad_card_wrapper .booking_form_wrapper .booking_form .btn {
+  margin-top: 15px;
+  font-size: 18px;
+}

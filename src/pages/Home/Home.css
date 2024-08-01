@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  background-color: rgb(222, 225, 162);
+  background-color: rgb(44, 44, 44);
 
   width: 1200px;
   height: 120px;
@@ -28,12 +28,10 @@
   margin-left: 20px;
   height: 70px;
   width: 70px;
-  /* background-color: #851212; */
-  background-color: rgb(164, 29, 29);
+  background-color: rgb(152, 12, 12);
   color: white;
 }
 
 .search_bar .button:hover {
-  background-color: #c33126;
-  /* color: black; */
+  background-color: #7a0800;
 }

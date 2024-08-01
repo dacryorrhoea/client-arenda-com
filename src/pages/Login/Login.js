@@ -9,36 +9,19 @@ const Login = ({ userInfo, updateUserInfo }) => {
   const [isLogin, setIsLogin] = useState('')
   const [isPassword, setIsPassword] = useState('')
 
-  const [isCsrf, setIsCsrf] = useState(null)
   const [isError, setIsError] = useState(null)
 
-  useEffect(() => {
-    axios.get(serverUrl + 'api/auth/csrf/', { withCredentials: true })
-      .then((res) => {
-        if (!(res.status >= 200 && res.status <= 299)) {
-          throw Error(res.statusText);
-        }
-        setIsCsrf(res.headers.get('X-CSRFToken'))
-      })
-      .catch((err) => console.error(err))
-  }, [])
-
   const login = () => {
-    axios.post(serverUrl + "api/auth/login/", {
-      username: isLogin,
-      password: isPassword
-    }, {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": isCsrf,
-      }
-    })
+    axios
+      .post(serverUrl + "api/token/", {
+        username: isLogin,
+        password: isPassword
+      })
       .then((res) => {
         if (!(res.status >= 200 && res.status <= 299)) {
           throw Error(res.statusText);
         }
-        getUserInfo()
+        getUserInfo(res.data.access, res.data.refresh)
       })
       .catch((err) => {
         console.error(err);
@@ -46,27 +29,35 @@ const Login = ({ userInfo, updateUserInfo }) => {
       });
   }
 
-  const getUserInfo = () => {
-    axios.get(serverUrl + "api/auth/user_info/", {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+  const getUserInfo = (access_token, refresh_token) => {
+    axios
+      .get(serverUrl + "api/account/user/profile/", {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      })
       .then((res) => {
-        updateUserInfo(res.data)
+        if (res.data.groups[0] === 2) {
+          updateUserInfo({
+            isAuthenticated: true,
+            username: res.data.username,
+            refresh_token: refresh_token,
+            lessor_rule: true,
+            user_id: res.data.id
+          })
+        } else {
+          updateUserInfo({
+            isAuthenticated: true,
+            username: res.data.username,
+            refresh_token: refresh_token,
+            lessor_rule: false,
+            user_id: res.data.id
+          })
+        }
       })
       .catch((err) => {
         if (err.status === 401) console.log(err.error);
       });
-  }
-
-  function changePassword(e) {
-    setIsPassword(e.target.value)
-  }
-
-  function changeLogin(e) {
-    setIsLogin(e.target.value)
   }
 
   function submitForm(e) {
