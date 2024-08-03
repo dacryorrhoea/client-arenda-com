@@ -37,7 +37,7 @@ const Login = ({ userInfo, updateUserInfo }) => {
         }
       })
       .then((res) => {
-        if (res.data.groups[0] === 2) {
+        if (res.data.groups[0] === 1) {
           updateUserInfo({
             isAuthenticated: true,
             username: res.data.username,

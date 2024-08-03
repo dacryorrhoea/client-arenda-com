@@ -5,6 +5,12 @@ import React, { useEffect, useState } from 'react'
 
 import { YMaps } from '@pbe/react-yandex-maps';
 
+// import '@fontsource/roboto/300.css';
+// import '@fontsource/roboto/400.css';
+// import '@fontsource/roboto/500.css';
+// import '@fontsource/roboto/700.css';
+
+
 import Search from './pages/Search/Search';
 import Home from './pages/Home/Home';
 import AdCard from './pages/AdsCard/AdCard';
@@ -23,6 +29,9 @@ const ANONYMOUS = {
 
 const DEFAULT_SEARCH_FILTER = {
   address: '',
+  begin_date: '',
+  end_date: '',
+  count_people: ''
 }
 
 function App() {
@@ -64,7 +73,7 @@ function App() {
                       userInfo.lessor_rule ?
                         <div className='item'><Link className='link' to="/placing">Разместить объявление</Link></div>
                         :
-                        <div className='item'><Link className='link' to="/booking">Разместить бронь</Link></div>
+                        <></>
                     }
                     <div className='item'><Link className='link' to="/profile">Профиль</Link></div>
                   </>
@@ -94,11 +103,11 @@ function App() {
               } />
 
               <Route path='search/ads' element={
-                <Search searchFilter={searchFilter} />
+                <Search searchFilter={searchFilter} userInfo={userInfo}/>
               } />
 
               <Route path='search/ads/:ad_id' element={
-                <AdCard searchFilter={searchFilter} />
+                <AdCard searchFilter={searchFilter} userInfo={userInfo}/>
               } />
 
               <Route path='profile' element={

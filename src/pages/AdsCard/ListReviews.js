@@ -1,56 +1,26 @@
 function ListReviews({ reviewsListData }) {
   return (
     <>
-      <div className='review_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>оценка 5 бобров из 5</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum mollitia eaque sint, iusto veniam dolorum eius temporibus, omnis praesentium aperiam minima rerum? Possimus consequatur accusantium debitis, quos aut illo nesciunt.</p>
-              </div>
-              <div className='review_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>оценка 5 бобров из 5</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum mollitia eaque sint, iusto veniam dolorum eius temporibus, omnis praesentium aperiam minima rerum? Possimus consequatur accusantium debitis, quos aut illo nesciunt.</p>
-              </div>
-              <div className='review_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>оценка 5 бобров из 5</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum mollitia eaque sint, iusto veniam dolorum eius temporibus, omnis praesentium aperiam minima rerum? Possimus consequatur accusantium debitis, quos aut illo nesciunt.</p>
-              </div>
-              <div className='review_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>оценка 5 бобров из 5</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum mollitia eaque sint, iusto veniam dolorum eius temporibus, omnis praesentium aperiam minima rerum? Possimus consequatur accusantium debitis, quos aut illo nesciunt.</p>
-              </div>
-              <div className='review_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>оценка 5 бобров из 5</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum mollitia eaque sint, iusto veniam dolorum eius temporibus, omnis praesentium aperiam minima rerum? Possimus consequatur accusantium debitis, quos aut illo nesciunt.</p>
-              </div>
-      {/* {(() => {
-        console.log('vivoju spisok')
-        const data = reviewsListData.map((result) => ({
-          id: result.id,
-          address: result.address,
-          price: result.price,
-          description: result.short_desc
-        }));
-
+      {(() => {
         const elements = []
 
-        data.forEach(ad => {
-          if (ad.category !== null) {
+        reviewsListData.forEach(review => {
+          if (review.category !== null) {
             elements.push(
               <div className='review_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>оценка 5 бобров из 5</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum mollitia eaque sint, iusto veniam dolorum eius temporibus, omnis praesentium aperiam minima rerum? Possimus consequatur accusantium debitis, quos aut illo nesciunt.</p>
+                <p>
+                <img src='https://i.pinimg.com/564x/14/88/ae/1488ae2bb4c75132b59da6b038e16f21.jpg' />
+                {`   ${review.owner.first_name} ${review.owner.last_name}`}
+                </p>
+                <p>оценка {review.rating} бобров из 10</p>
+                <p>{review.text}</p>
               </div>
             );
           }
         });
 
-        return elements;
-      })()} */}
+        return elements.slice(0, 10);
+      })()}
     </>
   )
 }

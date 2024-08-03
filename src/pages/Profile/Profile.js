@@ -7,6 +7,7 @@ import FavouritesList from './FavouritesList';
 import RentorList from './RentorList';
 
 import { getAccessToken } from '../../utils/requests';
+import ReviewsList from './ReviewsList';
 
 const serverUrl = 'http://localhost:8000/'
 
@@ -53,18 +54,23 @@ function Profile({ userInfo, updateUserInfo }) {
   return (
     <div className="profile_wrapper">
       <div className='profile_info_block'>
-        <img src="https://rule34.xxx//samples/894/sample_a4e77573d6936caa08a0f70501009f06.jpg?10777390" alt="" className='profile_photo' />
+        {
+          profileData.groups[0] == 1?
+          <img src="https://i.pinimg.com/564x/cb/69/09/cb6909a7c9d2e4d6f1d4fa0dc2e5a066.jpg" alt="" className='profile_photo'/>
+          :
+          <img src="https://i.pinimg.com/564x/14/88/ae/1488ae2bb4c75132b59da6b038e16f21.jpg" alt="" className='profile_photo' />
+        }
         <div className='user_info'>
           <p>Имя: {profileData.first_name}</p>
           <p>Фамилия: {profileData.last_name}</p>
           <p>Почта: {profileData.email}</p>
-          <p>Является - {profileData.groups[0] == 1 ? 'Арендатором' : 'Арендодателем'}</p>
+          <p>Является - {profileData.groups[0] == 2 ? 'Арендатором' : 'Арендодателем'}</p>
         </div>
         <button>Обновить</button>
         <button onClick={logout}>Выйти</button>
       </div>
       {
-        userInfo.lessor_rule ?
+        profileData.groups[0] == 1 ?
           <div className='owner_ads_wrapper'>
             <LessorList adsListData={profileData.owned_ads} />
           </div>
@@ -75,7 +81,11 @@ function Profile({ userInfo, updateUserInfo }) {
             </div>
 
             <div className='favourites_ads_wrapper'>
-              <FavouritesList userInfo={userInfo} />
+              <ReviewsList reviewsListData={profileData.owned_reviews} />
+            </div>
+
+            <div className='favourites_ads_wrapper'>
+              <FavouritesList favoritesListData={profileData.owned_favorites} />
             </div>
           </>
       }

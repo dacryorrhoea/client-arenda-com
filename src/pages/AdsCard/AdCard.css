@@ -74,13 +74,13 @@
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel {
-  width: 70%;
-  margin-left: 15%;
+  width: 90%;
+  margin-left: 5%;
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel img {
   width: auto;
-  height: 320px;
+  height: 400px;
   margin-left: auto;
   margin-right: auto;
 }

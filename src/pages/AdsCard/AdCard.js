@@ -11,7 +11,7 @@ import ListReviews from './ListReviews';
 
 const serverUrl = 'http://localhost:8000/'
 
-function AdCard() {
+function AdCard({searchFilter, userInfo}) {
   const [loadingStatus, setLoadingStatus] = useState(false)
 
   const {ad_id} = useParams();
@@ -41,40 +41,56 @@ function AdCard() {
     <div className='ad_card_wrapper'>
       <div className='ad_card_info_wrapper'>
         <div className='info_block'>
-          <h2>Это объявление о аренде квартиры</h2>
+          <h2>{adData.type_flats}</h2>
           <p>
-            <span>рейтинг: 9.5</span>
-            <span>69 отзывов</span>
+            <span>рейтинг: {adData.rating.sum_rating / adData.rating.count_reviews}</span>
+            <span>{adData.rating.count_reviews} отзывов</span>
             <span>{adData.address}</span>
           </p>
         </div>
         <div className='info_block'>
-          <ImagesCarousel/>
+          <ImagesCarousel imgSrc={adData.img_src}/>
           <div className='description_block'>
-            <h4>Квартира такая такая то <span>69М</span></h4>
+            <h4>{adData.short_desc}<span>{adData.square}м^2</span></h4>
             <p>
-              <span>3 комнаты</span>
-              <span>3 комнаты</span>
-              <span>3 комнаты</span>
-              <span>3 топора</span>
+              <span>{adData.params}</span>
             </p>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis autem possimus voluptatem amet voluptas officiis excepturi aut explicabo id fugit suscipit pariatur quisquam temporibus error ut necessitatibus sed perspiciatis quibusdam accusantium, quasi culpa repellat similique. A possimus quis, vel, aspernatur animi nesciunt quo, accusamus optio aliquam magnam ipsa dignissimos. Illum in, corporis perferendis dolor, placeat distinctio quasi, a corrupti veniam molestiae fugiat. Fugit error veritatis natus mollitia possimus totam, nam enim repellendus saepe alias id ea quisquam autem et tenetur recusandae ipsa vitae nobis aut explicabo velit nisi odio quasi eum! Neque nihil provident aspernatur magnam mollitia ipsa reiciendis asperiores!
+              {adData.description}
             </p>
           </div>
         </div>
         <div className='info_block'>
           <h4>Правила объекта размещения:</h4>
+          <p><span>{adData.clock_entry}</span></p>
+          <p><span>{adData.clock_leave}</span></p>
+          <p>
+            <span>{`Минимальный срок размещения: ${adData.min_length_of_stay} день`}</span>
+            <span> - </span>
+            <span>{`Максимальный срок размещения: ${adData.max_length_of_stay} дней`}</span>
+          </p>
+          <p>С животными можно? - {adData.animal_check? 'Да': 'Нет'}</p>
+          <p>Курить можно? - {adData.smoking_check? 'Да': 'Нет'}</p>
+          <p>Вечеринки можно? - {adData.party_check? 'Да': 'Нет'}</p>
+          <p>Документы предоставят? - {adData.docs_check? 'Да': 'Нет'}</p>
+          <p>С детьми можно? - {adData.kids_check? 'Да': 'Нет'}</p>
         </div>
         <div className='info_block'>
           <h4>Основные удобства:</h4>
+          <p>Вай-фай? - {adData.wifi? 'Да': 'Нет'}</p>
+          <p>{adData.towel? 'Да': 'Нет'}</p>
+          <p>Постельное бельё? - {adData.bed_linen? 'Да': 'Нет'}</p>
+          <p>Телевизор? - {adData.tv? 'Да': 'Нет'}</p>
+          <p>Микроволновка? - {adData.microwave? 'Да': 'Нет'}</p>
+          <p>Электрический чайник? - {adData.electric_kettle? 'Да': 'Нет'}</p>
+          <p>Балкон/лоджия? - {adData.balcony? 'Да': 'Нет'}</p>
         </div>
         <div className='info_block'>
           <h4>Оценка гостей:
-            <span>9.5 баллов</span>
-            <span>69 отзывов</span>
+            <span>{adData.rating.sum_rating / adData.rating.count_reviews} баллов</span>
+            <span>{adData.rating.count_reviews} отзывов</span>
           </h4>
-          <ListReviews reviewsListData={''}/>
+          <ListReviews reviewsListData={adData.reviews}/>
         </div>
         <div className='info_block'>
           <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} className='yandex_maps'>
@@ -82,16 +98,14 @@ function AdCard() {
           </Map>
         </div>
         <div className='info_block'>
-          <img src="https://static.sutochno.ru/doc/files/users/0/811/104/medium/635e37415d027.jpg" alt="img" className='lessor_img' />
+          <img src="https://i.pinimg.com/564x/cb/69/09/cb6909a7c9d2e4d6f1d4fa0dc2e5a066.jpg" alt="img" className='lessor_img' />
           <div className='lessor_info_block'>
-            <h4>Сергей Сергеевич</h4>
-            <span>Хозяин не лох и даже не дырявый</span><br />
-            <span>Ho мы можем и ошибаться</span>
+            <h4>{adData.owner.first_name} {adData.owner.last_name}</h4>
           </div>
         </div>
       </div>
       <div className='booking_form_wrapper'>
-        <Booking/>
+        <Booking userInfo={userInfo} adCardId={adData.id} searchFilter={searchFilter}/>
       </div>
     </div>
   );

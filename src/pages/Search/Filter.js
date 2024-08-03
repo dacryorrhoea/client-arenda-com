@@ -40,81 +40,15 @@ function Filter({ filterAds, updateFilterAds }) {
         />
       </label>
       <label>
-        None
+        Количество спальных мест
         <input
-          type="text"
+          type="number"
         />
       </label>
       <label>
-        None
+        Количество кроватей
         <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
-        />
-      </label>
-      <label>
-        None
-        <input
-          type="text"
+          type="number"
         />
       </label>
       <button onClick={onClickAcceptFilters}>Принять фильтры</button>

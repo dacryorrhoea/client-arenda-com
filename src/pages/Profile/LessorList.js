@@ -2,6 +2,7 @@ function LessorList({ adsListData }) {
   return (
     <>
       {(() => {
+        console.log(adsListData)
         const data = adsListData.map((result) => ({
           id: result.id,
           address: result.address,
@@ -15,10 +16,9 @@ function LessorList({ adsListData }) {
           if (ad.category !== null) {
             elements.push(
               <div key={ad.id} className='ads_block'>
-                <img src='https://www.anilibria.tv/storage/releases/posters/9725/8RIUaBHZVcX6BgTF__744550fa135767afb7e429ccda3d904e.jpg' />
-                <p>{ad.address}</p>
-                <p>{ad.price}$</p>
-                <p>{ad.description}</p>
+                <p>Адрес: {ad.address}</p>
+                <p>Цена: {ad.price}$</p>
+                <p>Описание: {ad.description.slice(0, 50)}...</p>
               </div>
             );
           }
