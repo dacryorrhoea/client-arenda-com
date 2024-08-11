@@ -1,42 +1,38 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { Image } from 'antd';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
+
+const handleDragStart = (e) => e.preventDefault();
 
 const ImagesCarousel = ({imgSrc}) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+const items = [
 
+	<div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+	<div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+	<div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
+];
   return (
     <div className='images_carousel'>
-      <Slider {...settings}>
-        <div>
-          <img src={imgSrc} alt='slide-1' />
-        </div>
-        <div>
-          <img src={imgSrc} alt='slide-2' />
-        </div>
-        <div>
-          <img src={imgSrc} alt='slide-3' />
-        </div>
-        <div>
-          <img src={imgSrc} alt='slide-3' />
-        </div>
-        <div>
-          <img src={imgSrc} alt='slide-3' />
-        </div>
-        <div>
-          <img src={imgSrc} alt='slide-3' />
-        </div>
-        <div>
-          <img src={imgSrc} alt='slide-3' />
-        </div>
-      </Slider>
+      <AliceCarousel
+        mouseTracking
+        // disableButtonsControls
+        // disableDotsControls
+        // autoPlay
+        infinite
+        animationDuration={1000}
+        // autoPlayInterval={2200}
+        items={items}
+      />
     </div>
   );
 };

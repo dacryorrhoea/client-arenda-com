@@ -1,40 +1,49 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Map, Placemark } from '@pbe/react-yandex-maps';
+import { Segmented, Tag } from 'antd';
 
 
 import './Search.css';
 
 import List from './List';
 import Filter from './Filter';
+import TagsLine from './TagsLine';
 import { Pagination } from '@mui/material';
-import { getAccessToken } from '../../utils/requests';
+import { useBookingParams } from '../../utils/hooks/useBookingParams';
+import { useUserStatus } from '../../utils/hooks/useUserStatus';
+import YandexMaps from './YandexMaps';
 
 const serverUrl = 'http://localhost:8000/'
 
+const orderingKey = {
+  'по популярности': '',
+  'по рейтингу': 'price',
+  'дёшево и быстро': '-price'
+}
 
-function Search({ searchFilter, userInfo }) {
+function Search({savedYM}) {
+  const [bookingParams, updateBookingParams] = useBookingParams()
+  const [userStatus] = useUserStatus()
+
   const [loadingAdsListStatus, setLoadingAdsListStatus] = useState(false)
-  const [loadingFavoritesListStatus, setLoadingFavoritesListStatus] = useState(false)
 
   const [currPage, setCurrPage] = useState(1)
 
   const [adsListData, setAdsListData] = useState()
   const [userListFavorites, setUserListFavorites] = useState([])
+  
+  const [formatCalculatingPrice, setFormatCalculatingPrice] = useState(true)
+
   const [filterAds, setFilterAds] = useState({
-    address: searchFilter.address,
-    min_price: '100',
-    max_price: '10000',
+    address: bookingParams.address,
+    min_price: '500',
+    max_price: '20000',
   })
+  const [currOrdering, setCurrOrdering] = useState()
 
   useEffect(() => {
-    if (userInfo.isAuthenticated) {
-      getAccessToken(getUserListFavorites, userInfo.refresh_token)
-    } else {
-      setLoadingFavoritesListStatus(true)
-    }
     getAdsListData()
-  }, [filterAds, currPage])
+  }, [filterAds, currPage, currOrdering])
 
   const updateFilterAds = (data) => {
     setFilterAds(data)
@@ -44,26 +53,12 @@ function Search({ searchFilter, userInfo }) {
     setCurrPage(value);
   };
 
-  const getUserListFavorites = (access_token) => {
-    axios
-      .get(serverUrl + 'api/account/user/profile/', {
-        headers: {
-          Authorization: `Bearer ${access_token}`
-        }
-      })
-      .then((res) => {
-        setUserListFavorites(res.data.owned_favorites.map((result) => result.ad))
-        setLoadingFavoritesListStatus(true)
-      })
-      .catch(err => console.error(err));
-  }
-
   const getAdsListData = () => {
     const paramsUrl = `?page=${currPage}` +
+      `&ordering=${currOrdering}` +
       `&price_min=${filterAds.min_price}` +
       `&price_max=${filterAds.max_price}` +
-      `&address=${searchFilter.address}`;
-
+      `&address=${filterAds.address}`;
     axios
       .get(`${serverUrl}api/ads/${paramsUrl}`)
       .then((res) => {
@@ -89,29 +84,51 @@ function Search({ searchFilter, userInfo }) {
     return countPage;
   }
 
-  if (loadingAdsListStatus && loadingFavoritesListStatus) {
-    console.log(userListFavorites)
-  } else {
+  if (!loadingAdsListStatus) {
     return (
-      <></>
+      <>
+      </>
     )
   }
 
   return (
     <div className='view_wrapper'>
-      <div className='filter'>
-        <Filter
-          filterAds={filterAds}
-          updateFilterAds={updateFilterAds}
-        />
+      <div style={{'min-height': '95v','width': '14%'}}>
+        <div className='filter'>
+          <Filter
+            filterAds={filterAds}
+            updateFilterAds={updateFilterAds}
+            setFormatCalculatingPrice={setFormatCalculatingPrice}
+          />
+        </div>
       </div>
       <div className='viewer'>
         <div className='wrapper_view_blocks'>
+          <div className='accepted_filters'>
+            <TagsLine filterAds={filterAds} updateFilterAds={updateFilterAds}/>
+          </div>
+          <div className='ordering_block'>
+            <p style={{ 'font-size': '18px'}}>
+              <span className='finded_obj'>Найдено {adsListData.count} вариантов жилья из 323 701</span>
+              <Segmented
+                size="small"
+                options={['по популярности', 'по рейтингу', 'дёшево и быстро']}
+                onChange={(value) => { setCurrOrdering(orderingKey[value]) }}
+                style={{
+                  // height: 32,
+                  // 'margin-bottom': '20px',
+                  'font-size': '15px',
+                  'font-weight': '600',
+                  // 'background-color': 'red'
+                  // 'color': 'red'
+                  // 'padding': '20px'
+                }}
+              />
+            </p>
+          </div>
           <List
             adsListData={adsListData.results}
-            userInfo={userInfo}
-            userListFavorites={userListFavorites}
-            getUserListFavorites={getUserListFavorites}
+            formatCalculatingPrice={formatCalculatingPrice}
           />
           <div className='pagination_wrapper'>
             <Pagination
@@ -126,9 +143,8 @@ function Search({ searchFilter, userInfo }) {
         </div>
 
       </div>
-      <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} className='yandex_maps'>
-        <Placemark defaultGeometry={[55.751574, 37.573856]} />
-      </Map>
+      <div style={{'min-height': '95v','width': '40%'}}>
+      <YandexMaps adsListData={adsListData.results} savedYM={savedYM}/></div>
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useUserStatus } from '../utils/hooks/useUserStatus';
 
-function PrivateRoute({ userInfo }) {
-  if (userInfo.isAuthenticated) {
+function PrivateRoute() {
+  const [userStatus] = useUserStatus()
+
+  if (userStatus !== 'Anon') {
     return <Outlet/>
   } else {
     return <Navigate to='/login' replace={true}/>

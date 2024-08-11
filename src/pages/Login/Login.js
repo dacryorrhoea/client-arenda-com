@@ -1,71 +1,32 @@
 import './Login.css'
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import axios from 'axios';
+import { login } from '../../utils/requests/client.auth';
+import { receiveData } from '../../utils/data';
+import { useUserStatus } from '../../utils/hooks/useUserStatus';
 
-const serverUrl = 'http://localhost:8000/'
+const Login = () => {
+  const [userStatus] = useUserStatus()
 
-const Login = ({ userInfo, updateUserInfo }) => {
   const [isLogin, setIsLogin] = useState('')
   const [isPassword, setIsPassword] = useState('')
 
   const [isError, setIsError] = useState(null)
 
-  const login = () => {
-    axios
-      .post(serverUrl + "api/token/", {
-        username: isLogin,
-        password: isPassword
-      })
-      .then((res) => {
-        if (!(res.status >= 200 && res.status <= 299)) {
-          throw Error(res.statusText);
-        }
-        getUserInfo(res.data.access, res.data.refresh)
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsError("Неверные данные")
-      });
-  }
-
-  const getUserInfo = (access_token, refresh_token) => {
-    axios
-      .get(serverUrl + "api/account/user/profile/", {
-        headers: {
-          Authorization: `Bearer ${access_token}`
-        }
-      })
-      .then((res) => {
-        if (res.data.groups[0] === 1) {
-          updateUserInfo({
-            isAuthenticated: true,
-            username: res.data.username,
-            refresh_token: refresh_token,
-            lessor_rule: true,
-            user_id: res.data.id
-          })
-        } else {
-          updateUserInfo({
-            isAuthenticated: true,
-            username: res.data.username,
-            refresh_token: refresh_token,
-            lessor_rule: false,
-            user_id: res.data.id
-          })
-        }
-      })
-      .catch((err) => {
-        if (err.status === 401) console.log(err.error);
-      });
-  }
-
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault()
-    login()
+
+    const loginResult = await login({
+      login: isLogin,
+      password: isPassword
+    })
+
+    if (loginResult !== 'Ok') {
+      setIsError("Неверные данные")
+    }
   }
 
-  if (!userInfo.isAuthenticated) {
+  if (userStatus == 'Anon') {
     return (
       <div className="login_form_wrapper">
         <form className="login_block">
@@ -81,7 +42,7 @@ const Login = ({ userInfo, updateUserInfo }) => {
       </div>
     )
   } else {
-    return <Navigate to='/' replace={true} />
+    return <Navigate to='/profile' replace={true} />
   }
 }
 

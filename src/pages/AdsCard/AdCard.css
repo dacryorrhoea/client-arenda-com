@@ -1,19 +1,20 @@
 .ad_card_wrapper {
   height: 100%;
   width: 100%;
-  position: relative;
+  display: flex;
+
+  /* overflow: scroll;
+  overflow-x: hidden; */
+  /* flex: 1 0; */
+  /* scrollbar-width: none; */
 }
 
 .ad_card_wrapper .ad_card_info_wrapper {
   display: inline-block;
   height: 100%;
-  width: 50%;
-  margin-left: 25%;
-
-  overflow: scroll;
-  overflow-x: hidden;
-  flex: 1 0;
-  scrollbar-width: none;
+  width: 830px;
+  margin-left: 18%;
+  padding-top: 134px;
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block {
@@ -22,8 +23,18 @@
   padding: 3%;
   margin-top: 20px;
   border-radius: 20px;
+  overflow: hidden;
 
   background-color: #fff;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .first {
+  position: absolute;
+  width: 830px;
+  top: 70px;
+  /* margin-top: 40px; */
+  padding: 0;
+  background-color: #bd000000;
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block .yandex_maps{
@@ -51,74 +62,125 @@
   margin-right: 15px;
 }
 
-.ad_card_wrapper .ad_card_info_wrapper .info_block h4 span {
-  margin-left: 25px;
-  font-size: 19px;
+.ad_card_wrapper .ad_card_info_wrapper .info_block h3 {
+  font-size:26px;
+  font-weight:700;
 }
 
-.ad_card_wrapper .ad_card_info_wrapper .info_block .lessor_img {
-  display: inline-block;
+.ad_card_wrapper .ad_card_info_wrapper .info_block h3 span {
+  margin-left: 17px;
+  font-size: 20px;
+}
+
+/* .ad_card_wrapper .ad_card_info_wrapper .info_block .lessor_img {
   top: 0;
   width: 140px;
   height: 140px;
   border-radius: 70px;
-}
+} */
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block .lessor_info_block {
-  display: inline-block;
-  margin-left: 30px;
+  /* text-align: end; */
+  margin-left: 20px;
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block .description_block {
-  padding: 70px;
+  padding: 0px;
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel {
-  width: 90%;
-  margin-left: 5%;
+  width: 106%;
+  margin-left: -3%;
+  margin-top: -3%;
+  border-radius: 20px;
+  height: 520px;
 }
 
-.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel img {
-  width: auto;
-  height: 400px;
-  margin-left: auto;
-  margin-right: auto;
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel {
+  width: 827px;
+  height: 520px;
 }
 
-.ad_card_wrapper .ad_card_info_wrapper .info_block .slick-dots li.slick-active button:before {
-  color: rgb(255, 0, 0);
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .ant-image {
+  width: 827px;
+  height: 520px;
 }
 
-.ad_card_wrapper .ad_card_info_wrapper .info_block .slick-prev:before,
-.ad_card_wrapper .ad_card_info_wrapper .info_block .slick-next:before {
-  color: rgb(255, 0, 0);
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__dots {
+  margin-top: 10px;
 }
 
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__prev-btn {
+  padding: 0;
+}
 
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__next-btn {
+  padding: 0;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__prev-btn-item {
+  display: block;
+  height: 35px;
+  width: 35px;
+  line-height: 31px;
+  font-size: 23px;
+  /* margin-top: 7px; */
+  position: absolute;
+  background-color: #ffffff63;
+  padding: 0;
+  padding-left: 7px;
+  color: black;
+  top: 222px;
+  left: 5px;
+  border-radius: 39px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__next-btn-item {
+  display: block;
+  height: 35px;
+  width: 35px;
+  line-height: 22px;
+  font-size: 23px;
+  position: absolute;
+  background-color: #ffffff63;
+  border-radius: 30px;
+  padding-left: 10px;
+  color: black;
+  top: 220px;
+  right: 5px;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__prev-btn-item:hover {
+  background-color: #ffffffdc;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__next-btn-item:hover {
+  background-color: #ffffffdc;
+}
+
+.ad_card_wrapper .ad_card_info_wrapper .info_block .images_carousel .alice-carousel__next-btn-item span {
+  margin-right: 0;
+}
 
 .ad_card_wrapper .booking_form_wrapper {
-  display: inline-block;
-  position: absolute;
-  height: 45%;
-  width: 18%;
-  margin: 25px 0 0 3.5%;
-  padding: 30px;
-  background-color: #fff;
+  /* display: inline-block; */
+  min-height: 95vh;
+  width: 350px;
+  /* margin: 30px 0; */
   /* text-align: center; */
-  border-radius: 10px;
 }
 
 .ad_card_wrapper .booking_form_wrapper .booking_form {
-  height: 100%;
-  width: 90%;
-  margin-left: 5%;
-}
-
-.ad_card_wrapper .booking_form_wrapper .booking_form * {
-  display: inline-block;
+  top: 7%;
+  position: sticky;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #fff;
   width: 100%;
-  text-align: center;
-  font-size: 18px;
+  margin-left: 5%;
+  margin-top: 134px;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -129,13 +191,11 @@
   margin-bottom: 5px;
 }
 
-.ad_card_wrapper .booking_form_wrapper .booking_form input {
-  display: inline-block;
-  margin-bottom: 10px;
-  font-size: 22;
-}
-
 .ad_card_wrapper .booking_form_wrapper .booking_form .btn {
   margin-top: 15px;
   font-size: 18px;
+}
+
+.ad_card_wrapper .ant-rate-star-second {
+  width: 18px;
 }

@@ -1,46 +1,34 @@
 import { Link } from "react-router-dom";
 // import { getAccessToken } from "../../utils/requests";
 import axios from "axios";
-import Button from '@mui/material/Button'
 import { useState } from "react";
+import { Card, Col, Row, Flex, Typography, Button, Rate} from "antd";
+
+import { SearchOutlined, HeartOutlined, CloseCircleOutlined, EnvironmentOutlined,
+  ThunderboltOutlined, SmileOutlined, StarOutlined
+ } from '@ant-design/icons';
+import { useBookingParams } from "../../utils/hooks/useBookingParams";
+import { Link as ScrollLink } from 'react-scroll';
 
 const serverUrl = 'http://localhost:8000/'
 
-function List({ adsListData, userInfo, userListFavorites, getUserListFavorites}) {
-  const postAddToFavorite = (id) => {
-    axios.post(serverUrl + "api/token/refresh/", {
-      refresh: userInfo.refresh_token
-    })
-    .then((res) => {
-      axios.post(serverUrl + "api/user/manage/favorite/",
-      {
-        ad_id: id
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${res.data.access}`
-        }
-      })
-      .then((res_in) => {
-        console.log('добавленно в избранное')
-        // getUserListFavorites()
-      })
-      .catch(err => console.error(err));
-    })
-    .catch(err => console.error(err));
-  }
-
+function List({ adsListData, formatCalculatingPrice }) {
+  const [bookingParams] = useBookingParams()
   return (
     <>
       {(() => {
         const data = adsListData.map((result) => ({
           id: result.id,
-          rating: result.rating.sum_rating / result.rating.count_reviews,
-          count_reviews: result.rating.count_reviews,
+          rating: result.rating ? result.rating.sum_rating / result.rating.count_reviews : 0,
+          count_reviews: result.rating ? result.rating.count_reviews : 0,
           img_src: result.img_src,
           address: result.address,
           price: result.price,
-          short_desc: result.short_desc
+          short_desc: result.short_desc,
+          type_flats: result.type_flats,
+          square: result.square,
+          count_people: result.count_people,
+          count_beds: result.count_beds,
         }));
 
         const elements = []
@@ -51,37 +39,49 @@ function List({ adsListData, userInfo, userListFavorites, getUserListFavorites})
               <div className='view_block' key={ad.id}>
                 <img src={ad.img_src} />
                 <div className="ad_info_block">
-                  <h4>{ad.short_desc}</h4>
-                  <p>
-                    <span>{ad.address}</span>
+                  <p style={{ 'font-size': '15px', 'font-weight':'500','margin-bottom': '2px'}}>{ad.type_flats}</p>
+                  <h5 style={{ 'font-weight': '600' }}>{ad.short_desc}</h5>
+                  <p style={{ 'font-size': '15px','font-weight':'500','margin-top': '2px'}}>
+                    <span>{ad.square} м<sup>2</sup></span>
+                    <span>{ad.count_people} гостя</span>
+                    <span>{ad.count_beds} кровати</span>
                   </p>
-                  <p>
-                    <span>рейтинг: {ad.rating}</span>
-                    <span>отзывов {ad.count_reviews}</span>
+                  <p className="address_line">
+                    <span><EnvironmentOutlined style={{ 'font-size': '19px'}}/>{ad.address.slice(0, 40)}...</span>
                   </p>
-                  <p>
-                    <span>Цена за сутки: {ad.price} руб.</span>
+                  <p className="rating">
+                    <span>
+                    <Rate
+                      style={{ 'color': '#ed0e42'}}
+                      disabled
+                      defaultValue={~~(ad.rating/2)}
+                      tooltips={['ужасно', 'плохо', 'нормально', 'хорошо', 'прекрасно']}
+                    /></span>
+                    <span style={{'font-size': '14px','font-weight':'600'}}> Отзывов: {ad.count_reviews}</span>
                   </p>
-                  {/* <p>
-                    <span>На ваш срок: {ad.price * 3} руб.</span>
-                  </p> */}
-                </div> 
+                </div>
+                
+                <div className="ad_achievements_and_price">
+                  {formatCalculatingPrice?
+                    <>
+                      <p className="price"><span style={ad.id === 195?{'color':'#ed0e42'}:{}}>{ad.price} ₽</span> за сутки</p>
+                      <p style={{'font-size': '14px'}}><span> {ad.price * bookingParams.days_lease} ₽</span> за {bookingParams.days_lease} суток</p>
+                    </>
+                    :
+                    <>
+                      <p className="price"><span style={ad.id === 195?{'color':'#ed0e42'}:{}}> {ad.price * bookingParams.days_lease} ₽</span> за {bookingParams.days_lease} суток</p>
+                      <p style={{'font-size': '14px'}}><span>{ad.price} ₽</span> за сутки</p>
+                    </>
+                  }
+                  <p className="achievements">
+                    <div className="achievement"><StarOutlined /> Суперхозяин</div>
+                    <div className="achievement" style={{'background-color':'#ed0e42', 'color':'white'}}><SmileOutlined/> Кэшбэк + {~~(ad.price * 0.2)} ₽</div>
+                    <div className="achievement"><ThunderboltOutlined/> Быстрое бронирование</div>
+                    <div className="achievement"><CloseCircleOutlined style={{'color':'red'}}/> Длительное проживание</div>
+                  </p>
+                </div>
                 <div className="item_link">
-                  <Link className="link" to={`/search/ads/${ad.id}`}>Подробнее</Link>
-                  <button
-                    type="submit"
-                    className="link"
-                    onClick={(() => {postAddToFavorite(ad.id)})}>
-                    {userListFavorites.includes(ad.id)? 'Уже в избранном': 'Добавить в избранное'}
-                  </button>
-                  {/* <Button
-                    onClick={() => {
-                      postAddToFavorite();
-                    }}
-                  >
-                    Click me
-                  </Button> */}
-
+                  <Link className="link" to={`/search/ads/${ad.id}`} target="_blank"><SearchOutlined /></Link>
                 </div>
               </div>
             );
