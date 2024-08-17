@@ -13,7 +13,6 @@ import AdCard from './pages/AdsCard/AdCard';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
-import Placing from './pages/Placing/Placing';
 
 import PrivateRoute from './components/PrivateRoute';
 
@@ -28,7 +27,7 @@ function App() {
     <YMaps
       query={{
         ns: "use-load-option",
-        apikey: 'e9030180-63dd-4748-81c8-931a9bb3741c',
+        apikey: 'e555f1c4-b3fa-4efc-9834-7a65fe636efb',
         load: 'package.full',
       }}
     >
@@ -43,14 +42,6 @@ function App() {
               {
                 userStatus !== 'Anon' ?
                   <>
-                    {
-                      userStatus == 'Lessor' ?
-                        <div className='item'>
-                          <Link className='link' to="/placing">Разместить объявление</Link>
-                        </div>
-                        :
-                        <></>
-                    }
                     <div className='item'>
                       <Link className='link' to="/profile">Профиль</Link>
                     </div>
@@ -82,10 +73,6 @@ function App() {
           <main className='main'>
             <Routes>
               <Route path='/' element={<Home/>} />
-
-              <Route path='placing' element={
-                <Placing />
-              } />
 
               <Route path='login' element={
                 <Login/>

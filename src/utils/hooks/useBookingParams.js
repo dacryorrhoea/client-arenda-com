@@ -6,6 +6,7 @@ const DEFAULT_BOOKING_PARAMS = {
   begin_date: '',
   end_date: '',
   count_people: 1,
+  kids_check: false,
   pets_check: false,
   days_lease: 3
 }

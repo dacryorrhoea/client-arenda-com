@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import { Image } from 'antd';
 import 'slick-carousel/slick/slick.css';
@@ -9,18 +9,19 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 
 const handleDragStart = (e) => e.preventDefault();
 
-const ImagesCarousel = ({imgSrc}) => {
-const items = [
+const ImagesCarousel = ({images}) => {
+  const [items, setItems] = useState([])
 
-	<div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-	<div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-	<div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-  <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={imgSrc} style={{'height':'480px', 'width':'auto'}}/></div>,
-];
+  useEffect(() => {
+    const elems = []
+    images.forEach(element => {
+      elems.push(
+        <div style={{'height':'480px', 'width':'827px', 'display':'inline-block', 'text-align': 'center', 'overflow':'hidden'}}><Image  src={element.src} style={{'height':'480px', 'width':'auto'}}/></div>,
+      )
+    });
+    setItems(elems)
+  }, [])
+
   return (
     <div className='images_carousel'>
       <AliceCarousel

@@ -21,7 +21,7 @@ const orderingKey = {
   'дёшево и быстро': '-price'
 }
 
-function Search({savedYM}) {
+function Search() {
   const [bookingParams, updateBookingParams] = useBookingParams()
   const [userStatus] = useUserStatus()
 
@@ -36,16 +36,17 @@ function Search({savedYM}) {
 
   const [filterAds, setFilterAds] = useState({
     address: bookingParams.address,
-    min_price: '500',
-    max_price: '20000',
+    price_min: '500',
+    price_max: '20000',
   })
-  const [currOrdering, setCurrOrdering] = useState()
+  const [currOrdering, setCurrOrdering] = useState('')
 
   useEffect(() => {
     getAdsListData()
   }, [filterAds, currPage, currOrdering])
 
   const updateFilterAds = (data) => {
+    console.log(data)
     setFilterAds(data)
   }
 
@@ -54,13 +55,11 @@ function Search({savedYM}) {
   };
 
   const getAdsListData = () => {
-    const paramsUrl = `?page=${currPage}` +
-      `&ordering=${currOrdering}` +
-      `&price_min=${filterAds.min_price}` +
-      `&price_max=${filterAds.max_price}` +
-      `&address=${filterAds.address}`;
+    const paramsUrl = `?page=${currPage}&ordering=${currOrdering}`;
     axios
-      .get(`${serverUrl}api/ads/${paramsUrl}`)
+      .get(`${serverUrl}api/ads/${paramsUrl}`, {
+        params: filterAds
+      })
       .then((res) => {
         setAdsListData(res.data)
         setLoadingAdsListStatus(true)
@@ -109,20 +108,12 @@ function Search({savedYM}) {
           </div>
           <div className='ordering_block'>
             <p style={{ 'font-size': '18px'}}>
-              <span className='finded_obj'>Найдено {adsListData.count} вариантов жилья из 323 701</span>
+              <span className='finded_obj'>Найдено {adsListData.count} вариантов жилья</span>
               <Segmented
                 size="small"
                 options={['по популярности', 'по рейтингу', 'дёшево и быстро']}
                 onChange={(value) => { setCurrOrdering(orderingKey[value]) }}
-                style={{
-                  // height: 32,
-                  // 'margin-bottom': '20px',
-                  'font-size': '15px',
-                  'font-weight': '600',
-                  // 'background-color': 'red'
-                  // 'color': 'red'
-                  // 'padding': '20px'
-                }}
+                style={{'font-size': '15px','font-weight': '600'}}
               />
             </p>
           </div>
@@ -144,7 +135,8 @@ function Search({savedYM}) {
 
       </div>
       <div style={{'min-height': '95v','width': '40%'}}>
-      <YandexMaps adsListData={adsListData.results} savedYM={savedYM}/></div>
+      <YandexMaps adsListData={adsListData.results}/>
+      </div>
     </div>
   );
 }

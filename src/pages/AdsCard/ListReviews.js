@@ -15,16 +15,18 @@ function ListReviews({ reviewsListData }) {
               <div className='review_block'>
                 <div style={{ 'display': 'flex'}}>
                   <Link>
-                    <Avatar size={100} src={<img src='https://i.pinimg.com/564x/14/88/ae/1488ae2bb4c75132b59da6b038e16f21.jpg' alt="avatar" />} />
+                    <Avatar size={100} src={<img src={review.owner.profile.avatar} alt="avatar" />} />
                   </Link>
                   <div className='lessor_info_block'>
                     <h5 style={{ 'font-weight': '600' }}>
-                      {review.owner.first_name} {review.owner.last_name}
+                      {review.owner.profile.first_name} {review.owner.profile.last_name}
                     </h5>
                     <Flex gap="4px 0" wrap>
-                      <Tag icon={<StarOutlined />} color="#efdc09" style={{ 'color': 'black', 'font-size': '11px', 'font-weight': '700', 'height': '22px' }}>
-                        Путешественик
-                      </Tag>
+                      {review.owner.owned_reservations.length > 23? 
+                        <Tag icon={<StarOutlined />} color="#efdc09" style={{ 'color': 'black', 'font-size': '11px', 'font-weight': '700', 'height': '22px' }}>
+                          Путешественик
+                        </Tag>
+                      : <></>}
                       <Tag icon={<StarOutlined />} color="#efdc09" style={{ 'color': 'black', 'font-size': '11px', 'font-weight': '700', 'height': '22px' }}>
                         Ревизор
                       </Tag>
@@ -34,7 +36,7 @@ function ListReviews({ reviewsListData }) {
                         <Rate
                           style={{'color':'#ed0e42'}}
                           disabled
-                          defaultValue={~~(review.rating / 2)}
+                          defaultValue={review.rating}
                           tooltips={['ужасно', 'плохо', 'нормально', 'хорошо', 'прекрасно']}
                         />
                       </span>
@@ -42,7 +44,7 @@ function ListReviews({ reviewsListData }) {
                   </div>
                 </div>
                 <p>{review.text.slice(0, 400)}</p>
-                <p>На дату такую то, тогда то</p>
+                <p>на {review.reservation.begin_lease} по {review.reservation.end_lease}</p>
               </div>
             );
           }

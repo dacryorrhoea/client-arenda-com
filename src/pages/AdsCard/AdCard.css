@@ -26,13 +26,15 @@
   overflow: hidden;
 
   background-color: #fff;
+  /* background-color: #ffb300; */
 }
 
 .ad_card_wrapper .ad_card_info_wrapper .first {
   position: absolute;
   width: 830px;
-  top: 70px;
+  top: 55px;
   /* margin-top: 40px; */
+  border-radius: 0;
   padding: 0;
   background-color: #bd000000;
 }
